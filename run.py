@@ -9,7 +9,7 @@ app = Flask(__name__)
 def hello_monkey():
     """Respond to incoming requests."""
     resp = twilio.twiml.Response()
-    resp.say("Hello Monkey")
+    resp.say("Thanks for calling. You reach Claire Li but she will never pick up your call. Thank you!")
  
     return str(resp)
  
