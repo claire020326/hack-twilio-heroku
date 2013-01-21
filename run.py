@@ -31,10 +31,15 @@ def handle_key():
     if digit_pressed =="1":
         resp = twilio.twiml.Response()
         #resp.dial("+13105551212")
-        resp.say("It's a trap, haha!")
+        resp.say("It's a trap!")
         resp.play("http://demo.twilio.com/hellomonkey/monkey.mp3")
         return str(resp)
-    else:
+    elif digit_pressed =="2":
+        resp = twilio.twiml.Response()
+        resp.say("Record your howl after the tone for Claire please.")
+        resp.record(maxLength="30",action = "/handle-recording")
+        return str(rep)
+    else:        
         return redirect("/") 
 if __name__ == "__main__":
      port = int(os.environ.get('PORT',5000)) 
