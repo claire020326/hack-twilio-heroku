@@ -15,12 +15,14 @@ def hello_monkey():
 	#Greet the caller by name
         caller = callers[from_number]
     else:
-	caller = "Monkey"
+	caller = "Slacker"
     resp = twilio.twiml.Response()
     resp.say("Hi "+caller+" this is Claire Li's private number")
-    resp.play("http://demo.twilio.com/hellomonkey/monkey.mp3")
+    #resp.play("http://demo.twilio.com/hellomonkey/monkey.mp3")
     with resp.gather(numDigits=1, action = "/handle-key",method = "POST") as g:
-        g.say("To speak to real Claire, press 1. Press any other key to start over.")
+        g.say("""To speak to real Claire, press 1.
+                 Press 2 to record your message.
+                 Press any other key to start over.""")
     return str(resp)
 #@app.route("/handle-key",methods = ['GET','POST'])
 #def handle_key():
@@ -42,7 +44,7 @@ def handle_key():
     # Get the digit pressed by the user
     digit_pressed = request.values.get('Digits', None)
     if digit_pressed == "1":
-        resp = twiml.Response()
+        resp = twilio.twiml.Response()
         # Dial (310) 555-1212 - connect that number to the incoming caller.
         resp.dial("+13105551212")
         # If the dial fails:
