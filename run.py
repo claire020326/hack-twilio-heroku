@@ -5,6 +5,7 @@ import os
  
 app = Flask(__name__)
 callers = {
+"+15105426248":"Chase",
 "+17142670397":"Siyao","+15105178020":"Lisa Li","+15155094420":"Shirly Chen","+16154297319":"Cynthia Feng","+15072029530":"Claire Li",
 } 
 @app.route("/", methods=['GET', 'POST'])
@@ -13,7 +14,7 @@ def hello_monkey():
     """Respond to incoming requests."""
     if from_number in callers:
 	#Greet the caller by name
-        greeting = "hi stranger"+ callers[from_number]+" you reach Claire Li.  Just to warn you, something will happen. hahahahaha"
+        greeting = "hi stranger! I know you are "+ callers[from_number]+". Just so you know you reach Claire Li.Watch out! something will happen.`"
     else:
 	greeting = "Hi there. Thanks for calling Claire Li. I'm not available now."
     resp = twilio.twiml.Response()
@@ -41,6 +42,15 @@ def handle_key():
         return str(rep)
     else:        
         return redirect("/") 
+@app.route("/handle-recording",methods = ['GET','POST'])
+def handle_recording():
+    """Play the caller's recording."""
+    recording_url = request.values.get("RecordingUrl",None)
+    resp = twilio.twiml.Response()
+    resp.say("Thanks for howling...listen to your howl before Claire suffer from it.")
+    resp.play(recording_url)
+    resp.say("Good..Bye")
+    return str(resp)
 if __name__ == "__main__":
      port = int(os.environ.get('PORT',5000)) 
      app.run(debug=True,host='0.0.0.0',port=port)
