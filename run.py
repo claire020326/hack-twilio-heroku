@@ -28,12 +28,12 @@ def handle_key():
     #Get the digit pressed by the user
     digit_pressed = request.values.get('Digits',None)
     if digit_pressed =="1":
-      resp = twiml.Responsee()
-      resp.dial("+13105551212")
-      resp.say("The call failed. It's a trap, haha!")
-      return str(resp)
+        resp = twiml.Responsee()
+        resp.dial("+13105551212")
+        resp.say("The call failed. It's a trap, haha!")
+        return str(resp)
     else:
-       return redirect("/") 
+        return redirect("/") 
 if __name__ == "__main__":
      port = int(os.environ.get('PORT',5000)) 
      app.run(debug=True,host='0.0.0.0',port=port)
