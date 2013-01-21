@@ -13,11 +13,12 @@ def hello_monkey():
     #"""Respond to incoming requests."""
     if from_number in callers:
 	#Greet the caller by name
-        caller = callers[from_numb]
+        caller = callers[from_number]
     else:
 	caller = "Monkey"
     resp = twilio.twiml.Response()
-    resp.say("Hi"+caller+"this is Claire Li's private number")
+    resp.say("Hi "+caller+" this is Claire Li's private number")
+    resp.play("http://demo.twilio.com/hellomonkey/monkey.mp3")
     with resp.gather(numDigits=1, action = "/handle-key",method = "POST") as g:
         g.say("To speak to real Claire, press 1. Press any other key to start over.")
     return str(resp)
@@ -35,6 +36,6 @@ def handle_key():
        return redirect("/") 
 if __name__ == "__main__":
      port = int(os.environ.get('PORT',5000)) 
-     #app.run(debug=True,host='0.0.0.0',port=port)
-     app.run(debug=True)
+     app.run(debug=True,host='0.0.0.0',port=port)
+     #app.run(debug=True)
 
