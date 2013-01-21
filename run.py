@@ -13,7 +13,7 @@ def hello_monkey():
     """Respond to incoming requests."""
     if from_number in callers:
 	#Greet the caller by name
-        greeting = "hi stalker"+ callers[from_number]+" you reach Claire Li.  Just to warn you, something will happen. hahahahaha"
+        greeting = "hi stranger"+ callers[from_number]+" you reach Claire Li.  Just to warn you, something will happen. hahahahaha"
     else:
 	greeting = "Hi there. Thanks for calling Claire Li. I'm not available now."
     resp = twilio.twiml.Response()
