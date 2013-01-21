@@ -13,11 +13,11 @@ def hello_monkey():
     #"""Respond to incoming requests."""
     if from_number in callers:
 	#Greet the caller by name
-	resp.say("Hello Hello" + callers[from_number])
+        caller = callers[from_numb]
     else:
-	resp.say("Hi there!")
-    #resp = twilio.twiml.Response()
-    #resp.say("Thanks for calling. You reach Claire Li but she is not available now and she knows you are Junchao Lu. Don't expect her to take your call!")
+	caller = "Monkey"
+    resp = twilio.twiml.Response()
+    resp.say("Hi"+caller+"this is Claire Li's private number")
     with resp.gather(numDigits=1, action = "/handle-key",method = "POST") as g:
         g.say("To speak to real Claire, press 1. Press any other key to start over.")
     return str(resp)
