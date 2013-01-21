@@ -42,15 +42,26 @@ def handle_key():
         return str(rep)
     else:        
         return redirect("/") 
-@app.route("/handle-recording",methods = ['GET','POST'])
+@app.route("/handle-recording", methods=['GET', 'POST'])
 def handle_recording():
-    """Play the caller's recording."""
-    recording_url = request.values.get("RecordingUrl",None)
+    """Play back the caller's recording."""
+ 
+    recording_url = request.values.get("RecordingUrl", None)
+ 
     resp = twilio.twiml.Response()
-    resp.say("Thanks for howling...listen to your howl before Claire suffer from it.")
+    resp.say("Thanks for howling... take a listen to what you howled.")
     resp.play(recording_url)
-    resp.say("Good..Bye")
+    resp.say("Goodbye.")
     return str(resp)
+#@app.route("/handle-recording",methods = ['GET','POST'])
+#def handle_recording():
+#    """Play the caller's recording."""
+#    recording_url = request.values.get("RecordingUrl",None)
+#    resp = twilio.twiml.Response()
+#    resp.say("Thanks for howling...listen to your howl before Claire suffer from it.")
+#    resp.play(recording_url)
+#    resp.say("Good..Bye")
+#    return str(resp)
 if __name__ == "__main__":
      port = int(os.environ.get('PORT',5000)) 
      app.run(debug=True,host='0.0.0.0',port=port)
