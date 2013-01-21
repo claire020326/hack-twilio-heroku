@@ -28,9 +28,10 @@ def handle_key():
     #Get the digit pressed by the user
     digit_pressed = request.values.get('Digits',None)
     if digit_pressed =="1":
-        resp = twiml.Responsee()
-        resp.dial("+13105551212")
-        resp.say("The call failed. It's a trap, haha!")
+        resp = twiml.Response()
+        #resp.dial("+13105551212")
+        resp.say("It's a trap, haha!")
+        resp.play("http://demo.twilio.com/hellomonkey/monkey.mp3")
         return str(resp)
     else:
         return redirect("/") 
