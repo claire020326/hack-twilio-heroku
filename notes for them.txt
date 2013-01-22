@@ -1,5 +1,0 @@
-- inconsistency
-   ok.so here it might be a bug:
-   http://www.twilio.com/docs/quickstart/python/twiml/connect-call-to-second-person
-
-   on line 42, it's resp = twiml.Response() where it should actually be twilio.twil.Response()
